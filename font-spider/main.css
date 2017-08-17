@@ -1,0 +1,17 @@
+/*声明 WebFont*/
+@font-face {
+  font-family: 'zhanghaishan';
+  src: url('fonts/zhanghaishan.eot');
+  src:
+    url('fonts/zhanghaishan.eot?#font-spider') format('embedded-opentype'),
+    url('fonts/zhanghaishan.woff') format('woff'),
+    url('fonts/zhanghaishan.ttf') format('truetype'),
+    url('fonts/zhanghaishan.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*使用选择器指定字体*/
+body {
+    font-family: 'zhanghaishan';
+}
