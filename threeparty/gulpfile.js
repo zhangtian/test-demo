@@ -76,7 +76,7 @@ gulp.task('fonts:dev', () => {
   gulp.src('./static/*.html')
     .pipe(shell([
       'echo <%= file.path%>',
-      'font-spider *.html'
+      'font-spider static/*.html'
     ]))
 });
 gulp.task('fonts:build', () => {
@@ -86,7 +86,7 @@ gulp.task('fonts:build', () => {
   gulp.src('./dist/*.html')
     .pipe(shell([
       'echo <%= file.path%>',
-      'font-spider **/*.html'
+      'font-spider dist/*.html'
     ]))
 });
 
@@ -111,5 +111,5 @@ gulp.task('devserver', () => {
     }))
 })
 
-gulp.task('wap', ['less:wap', 'connect', 'watch:wap']);
+gulp.task('wap', ['less:wap', 'fonts:dev', 'connect', 'watch:wap']);
 gulp.task('build', ['minimage:wap', 'compress:wap', 'less:wap:build', 'html:base64', 'fonts:build']);
