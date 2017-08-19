@@ -9,6 +9,7 @@ const gulp_replace = require('gulp-replace');
 const imagemin = require('gulp-imagemin');
 const base64 = require('gulp-base64');
 const tobase64 = require("gulp-tobase64");
+const server = require('gulp-devserver');
 const arrImgType = ['jpg', 'png', 'gif', 'bng'];
 const base64_opts = {
   maxImageSize: 1024 * 16
@@ -86,6 +87,20 @@ gulp.task('connect', function(){
     livereload: true
   });
 });
+
+gulp.task('devserver', () => {
+  gulp.src('./dist')
+    .pipe(server({
+      livereload: {
+        clientConsole: true
+      },
+      porxy: {
+        enable: true,
+        host: 'http://w3cboy.com/',
+        urls: /\/api/
+      }
+    }))
+})
 
 gulp.task('wap', ['less:wap', 'connect', 'watch:wap']);
 gulp.task('build', ['minimage:wap', 'less:wap:build', 'html:base64']);
