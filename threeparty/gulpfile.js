@@ -10,6 +10,7 @@ const gulp_replace = require('gulp-replace');
 const imagemin = require('gulp-imagemin');
 const base64 = require('gulp-base64');
 const tobase64 = require("gulp-tobase64");
+const fontSpider = require( 'gulp-font-spider' );
 const server = require('gulp-devserver');
 const arrImgType = ['jpg', 'png', 'gif', 'bng'];
 const base64_opts = {
@@ -57,6 +58,7 @@ gulp.task('minimage:wap', () =>
 );
 gulp.task('html:wap', function(){
   gulp.src(wap_html_src)
+    // .pipe(fontSpider())
     .pipe(connect.reload())
 });
 gulp.task('copyimg:wap', function(){
@@ -65,29 +67,19 @@ gulp.task('copyimg:wap', function(){
 });
 gulp.task('watch:wap', function(){
   gulp.watch(wap_less_src, ['less:wap']);
-  gulp.watch([wap_html_src], ['html:wap', 'fonts:dev']);
+  gulp.watch([wap_html_src], ['html:wap']);
 });
 gulp.task('html:base64', () => {
   gulp.src('./static/*.html')
     .pipe(tobase64(tobase64_opts))
     .pipe(gulp.dest('dist/'))
 });
-gulp.task('fonts:dev', () => {
-  gulp.src('./static/*.html')
-    .pipe(shell([
-      'echo <%= file.path%>',
-      'font-spider static/*.html'
-    ]))
-});
 gulp.task('fonts:build', () => {
   gulp.src('./static/fonts/*')
     .pipe(gulp.dest('dist/fonts/'))
 
   gulp.src('./dist/*.html')
-    .pipe(shell([
-      'echo <%= file.path%>',
-      'font-spider dist/*.html'
-    ]))
+    .pipe(fontSpider())
 });
 
 gulp.task('connect', function(){
@@ -111,5 +103,5 @@ gulp.task('devserver', () => {
     }))
 })
 
-gulp.task('wap', ['less:wap', 'fonts:dev', 'connect', 'watch:wap']);
+gulp.task('wap', ['less:wap', 'connect', 'watch:wap']);
 gulp.task('build', ['minimage:wap', 'compress:wap', 'less:wap:build', 'html:base64', 'fonts:build']);
