@@ -1,7 +1,8 @@
 const gulp = require('gulp');
 const less = require('gulp-less');
+const shell = require('gulp-shell');
 const mincss = require('gulp-minify-css');
-const uglify = require('uglify-js');
+const uglify = require('gulp-uglify');
 const minifier = require('gulp-uglify/minifier');
 const pump = require('pump');
 const connect = require('gulp-connect');
@@ -23,21 +24,10 @@ const wap_html_src = './static/*.html';
 const wap_less_src = './static/less/**/*.less';
 
 gulp.task('compress:wap', function (cb) {
-  const arrSrc = [
-    '**/*.js',
-    '!**/*.min.js'
-  ];
-  pump([
-        gulp.src(arrSrc, {cwd: 'static/js'}),
-        minifier({
-          compress: {
-            screw_ie8: false
-          },
-          mangle: {
-            screw_ie8: false
-          }
-        }, uglify),
-        gulp.dest('static/js')
+    pump([
+        gulp.src('static/js/*.js'),
+        uglify(),
+        gulp.dest('dist/js/')
     ],
     cb
   );
@@ -60,7 +50,9 @@ gulp.task('less:wap:build', function(){
 });
 gulp.task('minimage:wap', () =>
   gulp.src('**/*', { cwd: 'static/images' })
-    .pipe(imagemin())
+    // .pipe(imagemin([
+    //   imagemin.jpegtran({progressive: true})
+    // ]))
     .pipe(gulp.dest('dist/images'))
 );
 gulp.task('html:wap', function(){
@@ -72,13 +64,30 @@ gulp.task('copyimg:wap', function(){
     .pipe(gulp.dest('./dist/images'))
 });
 gulp.task('watch:wap', function(){
-  gulp.watch([wap_less_src, wap_html_src], 
-         ['less:wap', 'html:wap']);
+  gulp.watch(wap_less_src, ['less:wap']);
+  gulp.watch([wap_html_src], ['html:wap', 'fonts:dev']);
 });
 gulp.task('html:base64', () => {
   gulp.src('./static/*.html')
     .pipe(tobase64(tobase64_opts))
     .pipe(gulp.dest('dist/'))
+});
+gulp.task('fonts:dev', () => {
+  gulp.src('./static/*.html')
+    .pipe(shell([
+      'echo <%= file.path%>',
+      'font-spider *.html'
+    ]))
+});
+gulp.task('fonts:build', () => {
+  gulp.src('./static/fonts/*')
+    .pipe(gulp.dest('dist/fonts/'))
+
+  gulp.src('./dist/*.html')
+    .pipe(shell([
+      'echo <%= file.path%>',
+      'font-spider **/*.html'
+    ]))
 });
 
 gulp.task('connect', function(){
@@ -94,13 +103,13 @@ gulp.task('devserver', () => {
       livereload: {
         clientConsole: true
       },
-      porxy: {
+      proxy: {
         enable: true,
-        host: 'http://w3cboy.com/',
-        urls: /\/api/
+        host: 'https://www.souyidai.com',
+        urls: /^\//
       }
     }))
 })
 
 gulp.task('wap', ['less:wap', 'connect', 'watch:wap']);
-gulp.task('build', ['minimage:wap', 'less:wap:build', 'html:base64']);
+gulp.task('build', ['minimage:wap', 'compress:wap', 'less:wap:build', 'html:base64', 'fonts:build']);
