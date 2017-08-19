@@ -7,8 +7,15 @@ const pump = require('pump');
 const connect = require('gulp-connect');
 const gulp_replace = require('gulp-replace');
 const imagemin = require('gulp-imagemin');
-const fs = require('fs');
+const base64 = require('gulp-base64');
+const tobase64 = require("gulp-tobase64");
 const arrImgType = ['jpg', 'png', 'gif', 'bng'];
+const base64_opts = {
+  maxImageSize: 1024 * 16
+};
+const tobase64_opts = {
+  maxsize: base64_opts.maxImageSize/1024
+};
 
 /*static.huli.com/wap/ M站配置 end*/
 const wap_html_src = './static/*.html';
@@ -34,6 +41,7 @@ gulp.task('compress:wap', function (cb) {
     cb
   );
 });
+
 gulp.task('less:wap', function(){
   gulp.src([wap_less_src, '!./static/less/**/_*.less'])
     .pipe(less())
@@ -44,8 +52,9 @@ gulp.task('less:wap', function(){
 gulp.task('less:wap:build', function(){
   gulp.src([wap_less_src, '!./static/less/**/_*.less'])
     .pipe(less())
+    .pipe(base64(base64_opts))
     .pipe(mincss())
-    .pipe(gulp_replace('../images', 'https://events.huli.com/static/threeparty'))
+    // .pipe(gulp_replace('../images', 'https://events.huli.com/static/threeparty'))
     .pipe(gulp.dest('./dist/css/'))
 });
 gulp.task('minimage:wap', () =>
@@ -65,6 +74,11 @@ gulp.task('watch:wap', function(){
   gulp.watch([wap_less_src, wap_html_src], 
          ['less:wap', 'html:wap']);
 });
+gulp.task('html:base64', () => {
+  gulp.src('./static/*.html')
+    .pipe(tobase64(tobase64_opts))
+    .pipe(gulp.dest('dist/'))
+});
 
 gulp.task('connect', function(){
   connect.server({
@@ -74,4 +88,4 @@ gulp.task('connect', function(){
 });
 
 gulp.task('wap', ['less:wap', 'connect', 'watch:wap']);
-gulp.task('wap:build', ['copyimg:wap', 'less:wap:build']);
+gulp.task('build', ['minimage:wap', 'less:wap:build', 'html:base64']);
