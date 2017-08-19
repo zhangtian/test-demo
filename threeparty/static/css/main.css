@@ -79,10 +79,64 @@ body {
   color: #ffcc02;
   font-size: 0.533333rem;
 }
-.home_page .btn {
+.home_page .h_people {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+/*答题页*/
+.answer {
+  width: 100%;
+  height: 100%;
+}
+.answer .top {
+  text-align: center;
+  padding-top: 0.693333rem;
+  margin-bottom: 0.48rem;
+  position: relative;
+}
+.answer .top p {
+  line-height: 0.56rem;
+  font-size: 0.48rem;
+  position: absolute;
+  width: 100%;
+  bottom: 0.266667rem;
+  left: 0;
   text-align: center;
 }
-.home_page .btn a {
+.answer ul {
+  margin-left: 1.44rem;
+}
+.answer ul li {
+  height: 1.466667rem;
+  margin-bottom: 0.76rem;
+}
+.answer ul li img {
+  float: left;
+  width: 1.44rem;
+  height: 1.44rem;
+  border: 0.133333rem solid #231815;
+  border-radius: 50%;
+}
+.answer ul li img.answer_top {
+  width: 8.16rem;
+}
+.answer ul li h3 {
+  margin-left: 1.92rem;
+  padding-top: 0.106667rem;
+  line-height: 0.626667rem;
+  font-size: 0.533333rem;
+}
+.answer ul li h3.none_f {
+  /* 没人答题时添加 */
+  line-height: 1.266667rem;
+}
+/*共用按钮*/
+.btn {
+  text-align: center;
+}
+.btn a {
   display: inline-block;
   width: 3.666667rem;
   height: 1.426667rem;
@@ -92,12 +146,21 @@ body {
   line-height: 1.146667rem;
   font-size: 0.64rem;
 }
-.home_page .h_people {
-  width: 100%;
+/*分享*/
+.share {
   position: absolute;
+  width: 100%;
+  height: 100%;
   left: 0;
-  bottom: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.9);
 }
+.share img {
+  width: 8.8rem;
+  margin-left: 0.706667rem;
+  margin-top: 0.333333rem;
+}
+/*公共logo*/
 .h_tit {
   text-align: center;
   padding-top: 0.266667rem;
@@ -106,10 +169,14 @@ body {
 .h_tit img {
   width: 4.32rem;
 }
+/*公共背景图*/
 .bg_img {
   background: url("../images/bg.jpg") 0 0 no-repeat;
   -webkit-background-size: cover;
   background-size: cover;
+}
+.hide {
+  display: none;
 }
 /*声明 WebFont*/
 @font-face {
@@ -224,8 +291,14 @@ nav,
 section {
   display: block;
 }
+html {
+  width: 100%;
+  height: 100%;
+}
 body {
   line-height: 1;
+  width: 100%;
+  height: 100%;
 }
 ol,
 ul {
