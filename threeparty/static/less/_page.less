@@ -195,6 +195,8 @@ h3{
 }
 /*结果页*/
 .result{
+	height: 100%;
+	width: 100%;
 	.redeem_top{
 		margin-bottom: 0.773333rem;
 		.top_bg{
@@ -209,6 +211,8 @@ h3{
 }
 /*晒一下页*/
 .sun{
+	height: 100%;
+	width: 100%;
 	.h_tit{
 		margin-bottom: 0;
 	}
@@ -283,6 +287,116 @@ h3{
 			}
 			&.sun_r2{
 				right:1.386667rem;
+			}
+		}
+	}
+}
+/*题目*/
+.questions{
+	height: 100%;
+	width: 100%;
+	padding-top: 0.586667rem;
+	.qs_top{
+		position: relative;
+		text-align: center;
+		padding-top: 0.773333rem;
+		margin-bottom: 0.746667rem;
+		.qs_red{
+			width: 6.186667rem;
+			position: absolute;
+			left: 2.426667rem;
+			top:0;
+		}
+		.qs_user{
+			width: 1.506667rem;
+			border-radius: 50%;
+			border: 0.08rem solid #231815;
+			margin-bottom: 0.053333rem;
+		}
+		.qs_text{
+			position: relative;
+			text-align: center;
+			.qs_top_bg{
+				width: 8.626667rem;
+			}
+			p{
+				font-size: 0.4rem;	
+				line-height: 0.48rem;
+				position: absolute;
+				top:0.346667rem;
+				left: 0;
+				width: 100%;
+			}
+		}
+	}
+	.qs_list{
+		margin-bottom: 0.653333rem;
+		.qs_tit{
+			padding-left: 0.96rem;
+			padding-right: 1.0rem;
+			padding-top: 0.346667rem;
+			margin-bottom: 0.746667rem;
+			.qs_num{
+				height: 1.44rem;
+				width: 1.0rem;
+				float: left;
+				background: url("../images/qs1.png") 0 0 no-repeat;
+				-webkit-background-size:70% 100%;
+				background-size:70% 100%;
+				margin-top: -0.346667rem;
+				&.qs_num2{
+					background: url("../images/qs2.png") 0 0 no-repeat;
+					-webkit-background-size:100% 100%;
+					background-size:100% 100%;
+				}
+				&.qs_num3{
+					background: url("../images/qs3.png") 0 0 no-repeat;
+					-webkit-background-size:100% 100%;
+					background-size:100% 100%;
+				}
+			}
+			.qs_tit_text{
+				font-size: 0.466667rem;
+				line-height: 0.533333rem;
+				padding-top: 0.2rem;
+				margin-left: 1.2rem;
+				border-top: 0.066667rem solid #ffcc02;
+				padding-left: 0.106667rem;
+			}
+		}
+		ul{
+			li{
+				width: 8.533333rem;
+				height: 2.226667rem;
+				background: url("../images/qs_answer_bg.png") 50% 50% no-repeat;
+				-webkit-background-size: 92% 80%;
+				background-size: 92% 80%;
+				margin:0 auto;
+				&.active{
+					background: url("../images/qs_answer_bg2.png") 0 0 no-repeat;
+					-webkit-background-size: cover;
+					background-size: cover;
+				}
+				span{
+					width: 0.826667rem;
+					height: 0.813333rem;
+					float: left;
+					background:url("../images/a.png") 0 0 no-repeat;
+					background-size: cover;
+					margin-left: 0.986667rem;
+					margin-top: 0.64rem;
+					&.answer_b{
+						background: url("../images/b.png") 0 0 no-repeat;
+						background-size: 95% 100%;
+					}
+				}
+				.qs_inner{
+					float:left;
+					margin-left: 0.373333rem;
+					font-size: 0.426667rem;
+					line-height: 0.506667rem;
+					margin-top: 0.533333rem;
+				}
 			}
 		}
 	}
