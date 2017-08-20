@@ -159,6 +159,8 @@ input {
 /*主页面*/
 body {
   width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
   height: 100%;
   position: relative;
 }
@@ -239,6 +241,9 @@ body {
   margin-bottom: 0.48rem;
   position: relative;
 }
+.answer .top img {
+  width: 8.16rem;
+}
 .answer .top p {
   line-height: 0.56rem;
   font-size: 0.48rem;
@@ -274,6 +279,83 @@ body {
 .answer ul li h3.none_f {
   /* 没人答题时添加 */
   line-height: 1.266667rem;
+}
+/*兑换码页*/
+.redeem {
+  width: 100%;
+  height: 100%;
+  padding-top: 0.906667rem;
+}
+.redeem .redeem_top {
+  position: relative;
+  text-align: center;
+}
+.redeem .redeem_top .top_bg {
+  width: 7.266667rem;
+}
+.redeem .redeem_top p {
+  position: absolute;
+  line-height: 0.573333rem;
+  font-size: 0.48rem;
+  top: 0.426667rem;
+  width: 100%;
+  text-align: center;
+}
+.redeem .redeem_top .redeem_img {
+  width: 3.96rem;
+  margin-top: -0.4rem;
+  margin-left: -0.133333rem;
+}
+.redeem .redeem_code {
+  margin-bottom: 0.106667rem;
+}
+.redeem .redeem_code h3 {
+  text-align: center;
+  font-size: 0.56rem;
+  line-height: 1;
+  height: 0.56rem;
+  margin-bottom: 0.133333rem;
+}
+.redeem .redeem_code .code {
+  width: 4.733333rem;
+  height: 1.426667rem;
+  margin: 0 auto;
+  background: url("../images/redeem_code.png") 0 0 no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  margin-bottom: 0.106667rem;
+  text-align: center;
+}
+.redeem .redeem_code .code span {
+  height: 1.066667rem;
+  font-size: 0.48rem;
+}
+.redeem .redeem_code .code_text {
+  line-height: 0.453333rem;
+  text-align: center;
+  font-size: 0.333333rem;
+}
+.redeem .btn {
+  padding: 0 0.933333rem;
+}
+.redeem .btn .btn_l {
+  float: left;
+  color: #000;
+}
+.redeem .btn .btn_r {
+  float: right;
+  color: #000;
+}
+/*结果页*/
+.result .redeem_top {
+  margin-bottom: 0.773333rem;
+}
+.result .redeem_top .top_bg {
+  margin-bottom: 0.613333rem;
+}
+.result .redeem_top .redeem_img {
+  margin-top: 0;
+  width: 5.2rem;
 }
 /*共用按钮*/
 .btn {
