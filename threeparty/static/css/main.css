@@ -630,6 +630,13 @@ h3 {
   margin-left: 0.706667rem;
   margin-top: 0.333333rem;
 }
+.share p {
+  position: absolute;
+  left: 1.493333rem;
+  top: 1.586667rem;
+  font-size: 0.426667rem;
+  line-height: 0.586667rem;
+}
 /*公共logo*/
 .h_tit {
   text-align: center;
